@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:45 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/16 14:28:13 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:37:37 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "ft_printf/ft_printf.h"
 #include <stdio.h>
 
-static void swap(i_list **head)
+void	swap(t_stack **head)
 {
-	i_list	*temp;
+	t_stack	*temp;
 
 	temp = (*head)->next;
 	(*head)->next = (*head)->next->next;
@@ -24,10 +24,10 @@ static void swap(i_list **head)
 	(*head) = temp;
 }
 
-static void rotate(i_list **head)
+void	rotate(t_stack **head)
 {
-	i_list	*last;
-	i_list	*first;
+	t_stack	*last;
+	t_stack	*first;
 
 	last = ft_lstlast(*head);
 	first = *head;
@@ -36,10 +36,10 @@ static void rotate(i_list **head)
 	last->next = first;
 }
 
-static void reverse_rotate(i_list **head)
+void	reverse_rotate(t_stack **head)
 {
-    i_list *tail = ft_lstlast(*head);
-    i_list *pen = *head;
+    t_stack *tail = ft_lstlast(*head);
+    t_stack *pen = *head;
 
 	while (pen->next->next != NULL)
 	{
@@ -50,9 +50,9 @@ static void reverse_rotate(i_list **head)
     *head = tail;
 }
 
-static void push(i_list **from, i_list **to)
+void	push(t_stack **from, t_stack **to)
 {
-	i_list *temp;
+	t_stack *temp;
 
 	if (!from)
 		return ;
@@ -62,7 +62,7 @@ static void push(i_list **from, i_list **to)
 	*to = temp;
 }
 
-static void printlist(i_list *head)
+void	printlist(t_stack *head)
 {
 	while (head != NULL)
 	{

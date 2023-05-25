@@ -6,13 +6,13 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:06:18 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/16 17:37:37 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:44:41 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_lstsize(i_list *lst)
+int	ft_stacksize(t_stack *lst)
 {
 	int	i;
 
@@ -27,9 +27,9 @@ int	ft_lstsize(i_list *lst)
 	return (i);
 }
 
-void	ft_lstadd_back(i_list **lst, i_list *new)
+void	ft_stackadd_back(t_stack **lst, t_stack *new)
 {
-	i_list	*temp;
+	t_stack	*temp;
 
 	if (new == NULL || lst == NULL)
 		return ;
@@ -38,11 +38,11 @@ void	ft_lstadd_back(i_list **lst, i_list *new)
 		*lst = new;
 		return ;
 	}
-	temp = ft_lstlast(*lst);
+	temp = ft_stacklast(*lst);
 	temp->next = new;
 }
 
-void	ft_lstadd_front(i_list **lst, i_list *new)
+void	ft_stackadd_front(t_stack **lst, t_stack *new)
 {
 	if (!new)
 		return ;
@@ -50,11 +50,11 @@ void	ft_lstadd_front(i_list **lst, i_list *new)
 	(*lst) = new;
 }
 
-i_list	*ft_lstnew(int n)
+t_stack	*ft_stacknew(int n)
 {
-	i_list			*newnode;
+	t_stack			*newnode;
 
-	newnode = (i_list *)malloc(sizeof(i_list));
+	newnode = (t_stack *)malloc(sizeof(t_stack));
 	if (!newnode)
 		return (0);
 	newnode->value = n;
@@ -63,7 +63,7 @@ i_list	*ft_lstnew(int n)
 	return (newnode);
 }
 
-i_list	*ft_lstlast(i_list *lst)
+t_stack	*ft_stacklast(t_stack *lst)
 {
 	if (!lst)
 		return (0);

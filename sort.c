@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/23 16:06:20 by gvigilan         ###   ########.fr       */
+/*   Created: 2023/05/25 14:38:26 by gvigilan          #+#    #+#             */
+/*   Updated: 2023/05/25 14:49:47 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 #include "ft_printf/ft_printf.h"
 #include <stdio.h>
 
-extern t_stack	*newlists(char **arguments, int n_args);
-extern void printlist(t_stack *head);
-
-int main(int argc, char** argv)
+int	next_move(t_stack *a)
 {
-    printf("par:%d prog:%s\n",argc,argv[0]);
-    t_stack *list=newlists(argv,argc);
-    printlist(list);
+	t_stack	*last;
 
-
+	last = ft_stacklast(a);
+	if (find_next_max())
 }

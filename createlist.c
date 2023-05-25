@@ -6,43 +6,32 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/16 14:29:35 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:42:26 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf/libft/libft.h"
 
-i_list	*newlists(char **arguments, int n_args)
+t_stack	*newstack(char **arguments, int n_args)
 {
-	i_list	*newlist;
-	i_list	*newnode;
+	t_stack	*newlist;
+	t_stack	*newnode;
 	int		n;
 
 	n = 1;
-	newlist = ft_lstnew(ft_atoi(arguments[n]));
+	newlist = ft_stacknew(ft_atoi(arguments[n]));
 	n ++;
 	while (n < n_args)
 	{
-		newnode = ft_lstnew(ft_atoi(arguments[n]));
-		ft_lstadd_back(&newlist, newnode);
+		newnode = ft_stacknew(ft_atoi(arguments[n]));
+		ft_stackadd_back(&newlist, newnode);
 		n++;
 	}
 	return (newlist);
 }
 
-int	ordered(i_list *list)
-{
-	while (list != NULL)
-	{
-		if (list->value > list->next->value)
-			return (0);
-		list = list->next;
-	}
-	return (1);
-}
-
-int	choose_method(i_list *stack)
+int	choose_method(t_stack *stack)
 {
 	int	len;
 	int	pos;
@@ -66,7 +55,7 @@ int	choose_method(i_list *stack)
 	return (0);
 }
 
-static void order(i_list *stack_a, i_list *stack_b)
+static void order(t_stack *stack_a, t_stack *stack_b)
 {
 	while (!ordered(stack_a))
 	{
