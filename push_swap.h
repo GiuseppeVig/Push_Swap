@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/25 14:53:15 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:55:27 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct	s_stack
 {
 	int	value;
 	int	index;
-	struct list	*next;
+	struct s_stack	*next;
 }				t_stack;
 
 int		ft_stacksize(t_stack *lst);
@@ -29,17 +29,32 @@ t_stack	*ft_stacknew(int n);
 t_stack	*ft_stacklast(t_stack *lst);
 t_stack	*newstack(char **arguments, int n_args);
 int		ordered(t_stack *list);
-int		choose_method(t_stack *stack);
-void	order(t_stack *stack_a, t_stack *stack_b);
-void	swap(t_stack **head);
-void	rotate(t_stack **head);
-void	reverse_rotate(t_stack **head);
-void	push(t_stack **from, t_stack **to);
-void	printlist(t_stack *head);
+void	swap(t_stack **head, int i);
+void	rotate(t_stack **head, int i);
+void	reverse_rotate(t_stack **head, int i);
+void	push(t_stack **from, t_stack **to, int i);
+void	swap_both(t_stack **a, t_stack **b);
+void	rotate_both(t_stack **a, t_stack **b);
+void	reverse_rotate_both(t_stack **a, t_stack **b);
 int		find_next_min(t_stack *stack);
 int		find_next_max(t_stack *stack);
+int		count_moves(t_stack *node, t_stack *a, t_stack *b);
 void	assign_positions(t_stack *stack);
 void	initial_push(t_stack **stack_a, t_stack **stack_b);
-int		ordered(t_stack *stack);
+int		compare(int n, t_stack *values);
+int		is_valid_num(char *c);
+void	order_3(t_stack **a);
+t_stack *max_node(t_stack *st);
+t_stack *min_node(t_stack *st);
+t_stack *search_next_node(t_stack *a, t_stack *b);
+t_stack *choose_node(t_stack *b, t_stack *a);
+int		confront_next(t_stack *node, t_stack *a, t_stack *b);
+int		confront_moves(int max, int min, int node);
+void	bring_node_on_top(t_stack **stack_b, t_stack *node);
+void	move_stacks(t_stack **a, t_stack **b, t_stack *node);
+void	order_stacks(t_stack **a, t_stack **b);
+void	free_space(t_stack *head);
+void    print_list(t_stack *stack);
+void	adjust_stack_a(t_stack **a, t_stack *node);
 
 #endif

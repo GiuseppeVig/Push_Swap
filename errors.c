@@ -1,37 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 23:47:59 by gvigilan         ###   ########.fr       */
+/*   Created: 2023/06/19 11:22:11 by gvigilan          #+#    #+#             */
+/*   Updated: 2023/06/30 11:27:26 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "ft_printf/ft_printf.h"
 
-void    print_list(t_stack *stack)
+int	compare(int n, t_stack *values)
 {
-    t_stack *head;
+	t_stack *head;
 
-    head = stack;
-    while (head != NULL)
-    {
-        ft_printf("Value: %d, Index: %d\n", head->value, head->index);
-        head = head->next;
-    }
+	head = values;
+	while (head != NULL)
+	{
+		if (head->value == n)
+			return (1);
+		head = head->next;
+	}
+	return (0);
 }
 
-int main(int argc, char** argv)
+int	is_valid_num(char *c)
 {
-    t_stack *a = newstack(argv,argc);
-    t_stack *b = NULL;
-    if (!ordered(a))
-    {
-        initial_push(&a, &b);
-        order_stacks(&a, &b);
-    }
+	int	i;
+
+	i = 0;
+	while (c[i])
+	{
+		if (!ft_isdigit(c[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	free_space(t_stack *head)
+{
+	t_stack	*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		tmp->next = NULL;
+		free(tmp);
+	}
 }

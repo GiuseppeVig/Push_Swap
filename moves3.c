@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   moves3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 23:47:59 by gvigilan         ###   ########.fr       */
+/*   Created: 2023/06/28 14:48:10 by gvigilan          #+#    #+#             */
+/*   Updated: 2023/06/30 16:31:46 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_printf/ft_printf.h"
+#include <stdio.h>
 
-void    print_list(t_stack *stack)
+void	swap_both(t_stack **a, t_stack **b)
 {
-    t_stack *head;
-
-    head = stack;
-    while (head != NULL)
-    {
-        ft_printf("Value: %d, Index: %d\n", head->value, head->index);
-        head = head->next;
-    }
+	swap(b, 0);
+	swap(a, 0);
+	ft_printf("ss");
 }
 
-int main(int argc, char** argv)
+void	rotate_both(t_stack **a, t_stack **b)
 {
-    t_stack *a = newstack(argv,argc);
-    t_stack *b = NULL;
-    if (!ordered(a))
-    {
-        initial_push(&a, &b);
-        order_stacks(&a, &b);
-    }
+	rotate(b, 0);
+	rotate(a, 0);
+	ft_printf("rr");
+}
+
+void	reverse_rotate_both(t_stack **a, t_stack **b)
+{
+	reverse_rotate(a, 0);
+	reverse_rotate(b, 0);
+	ft_printf("rrr");
 }

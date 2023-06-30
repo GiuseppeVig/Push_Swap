@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   order3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 23:47:59 by gvigilan         ###   ########.fr       */
+/*   Created: 2023/06/19 11:18:48 by gvigilan          #+#    #+#             */
+/*   Updated: 2023/06/30 22:19:50 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "ft_printf/ft_printf.h"
 
-void    print_list(t_stack *stack)
+void	order_3(t_stack **a)
 {
-    t_stack *head;
+	t_stack	*head;
 
-    head = stack;
-    while (head != NULL)
-    {
-        ft_printf("Value: %d, Index: %d\n", head->value, head->index);
-        head = head->next;
-    }
-}
-
-int main(int argc, char** argv)
-{
-    t_stack *a = newstack(argv,argc);
-    t_stack *b = NULL;
-    if (!ordered(a))
-    {
-        initial_push(&a, &b);
-        order_stacks(&a, &b);
-    }
+	while(!ordered(*a))
+	{
+		head = *a;
+		assign_positions(head);
+		if (find_next_min(head) == 0)
+		{
+			reverse_rotate(a, 1);
+			swap(a, 1);
+		}
+		else if (find_next_max(head) == 0)
+		{
+			rotate(a, 1);
+				if(!ordered(*a))
+					swap(a, 1);
+		}
+		else
+		{
+			if (find_next_max(head) == 1)
+				reverse_rotate(a, 1);
+			else
+				swap(a, 1);
+		}
+	}
 }

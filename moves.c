@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:45 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/24 17:37:37 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:36:31 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf/ft_printf.h"
 #include <stdio.h>
 
-void	swap(t_stack **head)
+void	swap(t_stack **head, int i)
 {
 	t_stack	*temp;
 
@@ -22,23 +22,31 @@ void	swap(t_stack **head)
 	(*head)->next = (*head)->next->next;
 	temp->next = (*head);
 	(*head) = temp;
+	if (i == 1)
+		ft_printf("sa\n");
+	else if (i == 2)
+		ft_printf("sb\n");
 }
 
-void	rotate(t_stack **head)
+void	rotate(t_stack **head, int i)
 {
 	t_stack	*last;
 	t_stack	*first;
 
-	last = ft_lstlast(*head);
+	last = ft_stacklast(*head);
 	first = *head;
 	*head = first->next;
 	first->next = NULL;
 	last->next = first;
+	if (i == 1)
+		ft_printf("ra\n");
+	else if (i == 2)
+		ft_printf("rb\n");
 }
 
-void	reverse_rotate(t_stack **head)
+void	reverse_rotate(t_stack **head, int i)
 {
-    t_stack *tail = ft_lstlast(*head);
+    t_stack *tail = ft_stacklast(*head);
     t_stack *pen = *head;
 
 	while (pen->next->next != NULL)
@@ -48,9 +56,13 @@ void	reverse_rotate(t_stack **head)
     pen->next = NULL;
     tail->next = *head;
     *head = tail;
+	if (i == 1)
+		ft_printf("rra\n");
+	else if (i == 2)
+		ft_printf("rrb\n");
 }
 
-void	push(t_stack **from, t_stack **to)
+void	push(t_stack **from, t_stack **to, int i)
 {
 	t_stack *temp;
 
@@ -58,16 +70,10 @@ void	push(t_stack **from, t_stack **to)
 		return ;
 	temp = *from;
 	*from = (*from)->next;
-	ft_lstadd_front(to, temp);
+	ft_stackadd_front(to, temp);
 	*to = temp;
-}
-
-void	printlist(t_stack *head)
-{
-	while (head != NULL)
-	{
-		printf("%d\t", head->value);
-		head = head->next;
-	}
-	printf("\n");
+	if (i == 1)
+		ft_printf("pb\n");
+	else if (i == 2)
+		ft_printf("pa\n");
 }

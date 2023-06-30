@@ -6,12 +6,13 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/05/24 17:42:26 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:13:30 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "ft_printf/libft/libft.h"
+#include "./ft_printf/ft_printf.h"
+#include "./ft_printf/libft/libft.h"
 
 t_stack	*newstack(char **arguments, int n_args)
 {
@@ -24,6 +25,12 @@ t_stack	*newstack(char **arguments, int n_args)
 	n ++;
 	while (n < n_args)
 	{
+		if (compare(ft_atoi(arguments[n]), newlist) || !is_valid_num(arguments[n]))
+		{
+			ft_printf("ERROR\n");
+			free_space(newlist);
+			exit(1);
+		}
 		newnode = ft_stacknew(ft_atoi(arguments[n]));
 		ft_stackadd_back(&newlist, newnode);
 		n++;
@@ -31,53 +38,46 @@ t_stack	*newstack(char **arguments, int n_args)
 	return (newlist);
 }
 
-int	choose_method(t_stack *stack)
+int	ordered(t_stack *a)
 {
-	int	len;
-	int	pos;
-
-	len = ft_lstsize(stack);
-	pos = 0;
-	while (stack != NULL)
+	t_stack *head = a;
+	while (head->next != NULL)
 	{
-		if (stack->next->value < stack->value)
-		{
-			if (pos == 0)
-				return (1);
-			else if (pos < len/2)
-				return (2);
-			else if (pos > len/2)
-				return (3);
-		}
-		pos++;
-		stack = stack->next;
+		if (head->next->value < head->value)
+			return (0);
+		head = head->next;
 	}
-	return (0);
+	return (1);
 }
 
-static void order(t_stack *stack_a, t_stack *stack_b)
+t_stack *max_node(t_stack *st)
 {
-	while (!ordered(stack_a))
+	t_stack *head;
+	t_stack *max;
+
+	head = st;
+	max = st;
+	while (head != NULL)
 	{
-		if (choose_method(stack_a) == 1)
-			{
-				swap(&stack_a);
-				ft_printf("sa");
-			}
-		if (choose_method(stack_a) == 2)
-			{
-				rotate(&stack_a);
-				ft_printf("ra");
-			}
-		if (choose_method(stack_a) == 3)
-			{
-				reverse_rotate(&stack_a);
-				ft_printf("rra");
-			}
-		if (choose_method(stack_a) == 4)
-			{
-				push(&stack_a, &stack_b);
-				ft_printf("pb");
-			}
+		if (max->value < head->value)
+			max = head;
+		head = head->next;
 	}
+	return (max);
+}
+
+t_stack *min_node(t_stack *st)
+{
+	t_stack *head;
+	t_stack *min;
+
+	head = st;
+	min = st;
+	while (head != NULL)
+	{
+		if (min->value > head->value)
+			min = head;
+		head = head->next;
+	}
+	return (min);
 }
