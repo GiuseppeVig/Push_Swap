@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 23:48:18 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/01 00:38:05 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	adjust_stack_a(t_stack **a, t_stack *node)
 void	bring_node_on_top(t_stack **stack_b, t_stack *node)
 {
 	t_stack *head;
-
 	while (head->value != node->value)
 	{
 		head = *stack_b;
+		if (head->value == node->value)
+			break;
 		if (node->index < ft_stacksize(*stack_b)/2)
 			rotate(stack_b, 1);
 		else
@@ -55,22 +56,22 @@ void	bring_node_on_top(t_stack **stack_b, t_stack *node)
 void	move_stacks(t_stack **a, t_stack **b, t_stack *node)
 {
 	t_stack *head;
-	t_stack *head_b;
 
-	while (head_b->value != node->value)
+	while ((*b)->value != node->value)
 	{
 		head = *a;
-		head_b = *b;
-		while (head->value < node->value && head_b->value != node->value)
+		if (node->value > max_node(*a)->value || node->value < min_node(*a)->value)
+			bring_node_on_top(b, node);
+		while (head->value < node->value && (*b)->value != node->value)
 		{
 			if (node->index < ft_stacksize(*b)/2)
 				rotate_both(a, b);
 			else
 				reverse_rotate_both(a, b);
 		}
-		while (head->value > node->value && head_b->value != node->value)
+		while (head->value > node->value && (*b)->value != node->value)
 		{
-			if (node->index < ft_stacksize(*b)/2)
+			if (node->index > ft_stacksize(*b)/2)
 				rotate_both(a, b);
 			else
 				reverse_rotate_both(a, b);
@@ -93,6 +94,8 @@ void	order_stacks(t_stack **a, t_stack **b)
 		assign_positions(*b);
 	}
 	while (!ordered(*a))
+	{
 		rotate(a, 1);
+	}
 }
 
