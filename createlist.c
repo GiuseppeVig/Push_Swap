@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 16:12:34 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:56:26 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,21 @@ t_stack *min_node(t_stack *st)
 		head = head->next;
 	}
 	return (min);
+}
+
+void	insert_values(t_stack **new, char **values)
+{
+	int		i;
+	t_stack	*tmp;
+	char	**split;
+	
+	split = ft_split(values[1], ' ');
+	i = 0;
+	tmp = NULL;
+	while (split[i] != NULL)
+	{
+		tmp = ft_stacknew(ft_atoi(split[i]));
+		ft_stackadd_back(new, tmp);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 22:55:27 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:54:54 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stacknew(int n);
 t_stack	*ft_stacklast(t_stack *lst);
 t_stack	*newstack(char **arguments, int n_args);
+void	insert_values(t_stack **new, char **values);
 int		ordered(t_stack *list);
 void	swap(t_stack **head, int i);
 void	rotate(t_stack **head, int i);

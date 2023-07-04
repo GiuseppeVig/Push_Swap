@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/01 00:38:23 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:55:58 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,20 @@ void    print_list(t_stack *stack)
 
 int main(int argc, char** argv)
 {
-    t_stack *a = newstack(argv,argc);
-    t_stack *b = NULL;
+    t_stack *a;
+    t_stack *b;
+    
+    a = NULL;
+    if (argc == 2)
+        insert_values(&a, argv);
+    else
+        a = newstack(argv,argc);
+    b = NULL;
     if (!ordered(a))
     {
         initial_push(&a, &b);
         order_stacks(&a, &b);
     }
+    free_space(a);
+    free_space(b);
 }

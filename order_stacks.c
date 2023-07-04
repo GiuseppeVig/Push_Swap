@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 16:05:29 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:22:28 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	adjust_stack_a(t_stack **a, t_stack *node)
 void	bring_node_on_top(t_stack **stack_b, t_stack *node)
 {
 	t_stack *head;
+	
+	head = NULL;
 	while (head->value != node->value)
 	{
 		head = *stack_b;
