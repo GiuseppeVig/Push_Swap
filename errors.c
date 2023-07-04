@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:22:11 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 11:27:26 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:59:59 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	is_valid_num(char *c)
 	int	i;
 
 	i = 0;
+	if (c[0] == '-' || c[0] == '+')
+		i = 1;
 	while (c[i])
 	{
 		if (!ft_isdigit(c[i]))

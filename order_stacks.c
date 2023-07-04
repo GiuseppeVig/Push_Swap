@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/01 00:38:05 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:05:29 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,22 @@ void	adjust_stack_a(t_stack **a, t_stack *node)
 
 	head = *a;
 	i = 0;
-	if (node->value > max_node(*a)->value)
-		reverse_rotate(a, 1);
-	while (node->value > head->value)
+	while (node->value > head->value && head->next != NULL)
 	{
 		i++;
 		head = head->next;
 	}
-	while (i <= ft_stacksize(*a)/2 && i != 0)
+	if (head->next == NULL)
+		i++;
+	if (i < ft_stacksize(*a)/2)
 	{
-		rotate(a, 1);
-		i--;
+		while (i <= ft_stacksize(*a)/2 && i != 0)
+		{
+			rotate(a, 1);
+			i--;
+		}
 	}
-	while (i > ft_stacksize(*a)/2)
+	while (i >= ft_stacksize(*a)/2)
 	{
 		reverse_rotate(a, 1);
 		i--;

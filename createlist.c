@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 18:13:30 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:12:34 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_stack	*newstack(char **arguments, int n_args)
 	{
 		if (compare(ft_atoi(arguments[n]), newlist) || !is_valid_num(arguments[n]))
 		{
-			ft_printf("ERROR\n");
+			write(2, "Error\n", 6);
 			free_space(newlist);
 			exit(1);
 		}
