@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:25:05 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 22:29:09 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:16:31 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,29 @@ t_stack *choose_node(t_stack *b, t_stack *a)
 		return (min_node(b));
 }
 
-int	confront_next(t_stack *node, t_stack *a, t_stack *b)
+t_stack	*next_node_a(t_stack *node, t_stack *a)
 {
-	if (count_moves(node, a, b) < count_moves(node->next, a, b))
-		return (1);
-	return (0);
+	t_stack *head;
+	t_stack	*tmp;
+
+	head = a;
+	tmp = min_node(a);
+/*	if (node->value < min_node(a)->value)
+		return (min_node(a));
+	if (node->value > max_node(a)->value)
+		return (max_node(a));*/
+//	else
+//	{
+		while (head->next != NULL)
+		{
+			if (node->value > head->value && head->value > tmp->value)
+				tmp = head;
+			head = head->next;
+		}
+		if (node->value > head->value && head->value > tmp->value)
+			tmp = head;
+		return (tmp);
+//	}
 }
 
 t_stack *search_next_node(t_stack *a, t_stack *b)

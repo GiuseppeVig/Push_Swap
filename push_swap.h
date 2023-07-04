@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 16:54:54 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:51:26 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_stack *max_node(t_stack *st);
 t_stack *min_node(t_stack *st);
 t_stack *search_next_node(t_stack *a, t_stack *b);
 t_stack *choose_node(t_stack *b, t_stack *a);
-int		confront_next(t_stack *node, t_stack *a, t_stack *b);
+t_stack	*next_node_a(t_stack *node, t_stack *a);
 int		confront_moves(int max, int min, int node);
 void	bring_node_on_top(t_stack **stack_b, t_stack *node);
 void	move_stacks(t_stack **a, t_stack **b, t_stack *node);

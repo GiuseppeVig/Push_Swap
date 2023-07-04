@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 16:56:26 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 18:55:49 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	insert_values(t_stack **new, char **values)
 {
 	int		i;
 	t_stack	*tmp;
+	t_stack	*head;
 	char	**split;
 	
 	split = ft_split(values[1], ' ');
@@ -93,6 +94,13 @@ void	insert_values(t_stack **new, char **values)
 	tmp = NULL;
 	while (split[i] != NULL)
 	{
+		head = *new;
+		if (compare(ft_atoi(split[i]), head) || !is_valid_num(split[i]))
+		{
+			write(2, "Error\n", 6);
+			free_space(*new);
+			exit(1);
+		}
 		tmp = ft_stacknew(ft_atoi(split[i]));
 		ft_stackadd_back(new, tmp);
 		i++;

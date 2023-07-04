@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 16:22:28 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:33:02 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,24 @@
 void	adjust_stack_a(t_stack **a, t_stack *node)
 {
 	t_stack *head;
-	int		i;
+	t_stack	*tmp;
 
 	head = *a;
-	i = 0;
-	while (node->value > head->value && head->next != NULL)
+	tmp = next_node_a(node, *a);
+	if (tmp->value == min_node(*a)->value && node->value < tmp->value)
 	{
-		i++;
-		head = head->next;
+		bring_node_on_top(a, min_node(*a));
+		return;
 	}
-	if (head->next == NULL)
-		i++;
-	if (i < ft_stacksize(*a)/2)
+	while (ft_stacklast(*a)->value != tmp->value)
 	{
-		while (i <= ft_stacksize(*a)/2 && i != 0)
-		{
+		head = *a;
+		if (ft_stacklast(*a)->value == tmp->value)
+			break;
+		if (tmp->index > ft_stacksize(*a)/2)
+			reverse_rotate(a, 1);
+		else
 			rotate(a, 1);
-			i--;
-		}
-	}
-	while (i >= ft_stacksize(*a)/2)
-	{
-		reverse_rotate(a, 1);
-		i--;
 	}
 }
 
@@ -45,7 +40,7 @@ void	bring_node_on_top(t_stack **stack_b, t_stack *node)
 {
 	t_stack *head;
 	
-	head = NULL;
+	head = *stack_b;
 	while (head->value != node->value)
 	{
 		head = *stack_b;
@@ -54,7 +49,8 @@ void	bring_node_on_top(t_stack **stack_b, t_stack *node)
 		if (node->index < ft_stacksize(*stack_b)/2)
 			rotate(stack_b, 1);
 		else
-			reverse_rotate(stack_b, 1);
+			reverse_rotate(stack_b, 2);
+		assign_positions(head);
 	}
 }
 
@@ -62,9 +58,9 @@ void	move_stacks(t_stack **a, t_stack **b, t_stack *node)
 {
 	t_stack *head;
 
+	head = *a;
 	while ((*b)->value != node->value)
 	{
-		head = *a;
 		if (node->value > max_node(*a)->value || node->value < min_node(*a)->value)
 			bring_node_on_top(b, node);
 		while (head->value < node->value && (*b)->value != node->value)
@@ -80,6 +76,7 @@ void	move_stacks(t_stack **a, t_stack **b, t_stack *node)
 				rotate_both(a, b);
 			else
 				reverse_rotate_both(a, b);
+				
 		}
 		bring_node_on_top(b, node);
 	}
@@ -100,7 +97,10 @@ void	order_stacks(t_stack **a, t_stack **b)
 	}
 	while (!ordered(*a))
 	{
-		rotate(a, 1);
+		if (min_node(*a)->index < ft_stacksize(*a)/2)
+			rotate(a, 1);
+		else
+			reverse_rotate(a, 1);
 	}
 }
 
