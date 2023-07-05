@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:04:50 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 17:00:23 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:43:45 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,11 @@ int count_moves(t_stack *node, t_stack *a, t_stack *b)
 
 	head = a;
 	i = 0;
-	while (node->value < head->value && head->next != NULL)
+	while (head->value != next_last_a(node, a)->value && head->next != NULL)
 	{
 		i++;
 		head = head->next;
 	}
-	if (node->value > head->value && node->index < ft_stacksize(b))
-		return (node->index);
-	else
-		return (ft_stacksize(b) - node->index);
 	if (head->index > ft_stacksize(a)/2 && node->index < ft_stacksize(b)/2)
 		return (ft_stacksize(a) - i + node->index + 1);
 	else if (node->index > ft_stacksize(b)/2 && head->index < ft_stacksize(a)/2)
@@ -79,22 +75,41 @@ int count_moves(t_stack *node, t_stack *a, t_stack *b)
 
 void	assign_positions(t_stack *stack)
 {
+	t_stack	*head;
 	int	position;
 
 	position = 0;
-	while(stack != NULL)
+	head = stack;
+	while(head != NULL)
 	{
-		stack->index = position;
+		head->index = position;
 		position++;
-		stack = stack->next;
+		head = head->next;
 	}
 }
 
 void	initial_push(t_stack **stack_a, t_stack **stack_b)
 {
-	while (ft_stacksize(*stack_a) != 3)
+	t_stack	*head;
+
+	head = *stack_a;
+	while (ft_stacksize(*stack_a) > 3)
+	{
+		head = *stack_a;
+		if ((*stack_b) != NULL)
+		{
+			while (head->next->value > head->value && !(max_node(*stack_b)->value < head->value || min_node(*stack_b)->value > head->value))
+			{
+				rotate(stack_a, 1);
+				head = *stack_a;
+			}
+		}
 		push(stack_a, stack_b, 1);
+		if (ordered(*stack_a))
+			break;
+	}
 	assign_positions(*stack_a);
 	assign_positions(*stack_b);
-	order_3(stack_a);
+	if (ft_stacksize(*stack_a) == 3)
+		order_3(stack_a);
 }

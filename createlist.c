@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 18:55:49 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:07:21 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	insert_values(t_stack **new, char **values)
 	while (split[i] != NULL)
 	{
 		head = *new;
-		if (compare(ft_atoi(split[i]), head) || !is_valid_num(split[i]))
+		if (compare(ft_atoi(split[i]), head) || !is_valid_num(split[i]) || split[1] == NULL)
 		{
 			write(2, "Error\n", 6);
 			free_space(*new);

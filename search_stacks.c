@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:25:05 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 05:05:22 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:45:10 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@ int	confront_moves(int max, int min, int node)
 		return (min);
 	else
 		return (max);
-}
-
-t_stack *next_first_a(t_stack *node, t_stack *a)
-{
-	t_stack *head;
-	t_stack	*tmp;
-
-	head = a;
-	tmp = max_node(a);
-	while (head->next != NULL)
-	{
-		if (node->value < head->value && head->value < tmp->value)
-			tmp = head;
-		head = head->next;
-	}
-	if (node->value > head->value && head->value > tmp->value)
-		tmp = head;
-	return (tmp);
 }
 
 t_stack	*next_last_a(t_stack *node, t_stack *a)
@@ -65,9 +47,10 @@ t_stack *search_next_node(t_stack *a, t_stack *b)
 
 	head = b;
 	next_node = b;
-	while (count_moves(head, a, b) > count_moves(head, a, b) || head->next != NULL)
+	while (head->next != NULL)
 	{
-		if (count_moves(next_node, a, b) < count_moves(head, a, b))
+//		ft_printf("Current Number of Moves: %d\nCandidate:%d\n", count_moves(next_node, a, b), count_moves(head, a, b));
+		if (count_moves(next_node, a, b) <= count_moves(head, a, b))
 			next_node = head;
 		head = head->next;
 	}
