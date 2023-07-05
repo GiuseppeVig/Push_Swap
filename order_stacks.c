@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 12:29:54 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:54:52 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	order_stacks(t_stack **a, t_stack **b)
 		next_node = search_next_node(*a, *b);
 		move_stacks(a, b, next_node);
 		adjust_stack_a(a, next_node);
-
 		push(b, a, 2);
 		assign_positions(*a);
 		assign_positions(*b);

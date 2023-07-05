@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 11:03:51 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:18:27 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int main(int argc, char** argv)
     if (!ordered(a))
     {
         initial_push(&a, &b);
+        assign_positions(a);
+	    assign_positions(b);
         order_stacks(&a, &b);
     }
     free_space(a);

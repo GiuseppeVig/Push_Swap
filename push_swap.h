@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 12:25:31 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:59:31 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_stack	*ft_stacklast(t_stack *lst);
 t_stack	*newstack(char **arguments, int n_args);
 void	insert_values(t_stack **new, char **values);
 int		ordered(t_stack *list);
+int		reverse_ordered(t_stack *head);
 void	swap(t_stack **head, int i);
 void	rotate(t_stack **head, int i);
 void	reverse_rotate(t_stack **head, int i);
@@ -40,6 +41,7 @@ void	reverse_rotate_both(t_stack **a, t_stack **b);
 int		find_next_min(t_stack *stack);
 int		find_next_max(t_stack *stack);
 int		count_moves(t_stack *node, t_stack *a, t_stack *b);
+int		in_range(t_stack *a);
 void	assign_positions(t_stack *stack);
 void	initial_push(t_stack **stack_a, t_stack **stack_b);
 int		compare(int n, t_stack *values);

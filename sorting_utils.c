@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 16:04:50 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 12:43:45 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:01:05 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,26 +90,8 @@ void	assign_positions(t_stack *stack)
 
 void	initial_push(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*head;
-
-	head = *stack_a;
-	while (ft_stacksize(*stack_a) > 3)
-	{
-		head = *stack_a;
-		if ((*stack_b) != NULL)
-		{
-			while (head->next->value > head->value && !(max_node(*stack_b)->value < head->value || min_node(*stack_b)->value > head->value))
-			{
-				rotate(stack_a, 1);
-				head = *stack_a;
-			}
-		}
-		push(stack_a, stack_b, 1);
-		if (ordered(*stack_a))
-			break;
-	}
-	assign_positions(*stack_a);
-	assign_positions(*stack_b);
+	while (ft_stacksize(*stack_a) > 3 && !ordered(*stack_a))
+			push(stack_a, stack_b, 1);
 	if (ft_stacksize(*stack_a) == 3)
 		order_3(stack_a);
 }

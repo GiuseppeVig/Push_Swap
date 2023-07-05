@@ -6,11 +6,18 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:25:05 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 12:45:10 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:59:07 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	in_range(t_stack *a)
+{
+	if (a->value < ft_stacklast(a)->value)
+		return (1);
+	return (0);
+}
 
 int	confront_moves(int max, int min, int node)
 {
@@ -49,10 +56,9 @@ t_stack *search_next_node(t_stack *a, t_stack *b)
 	next_node = b;
 	while (head->next != NULL)
 	{
-//		ft_printf("Current Number of Moves: %d\nCandidate:%d\n", count_moves(next_node, a, b), count_moves(head, a, b));
-		if (count_moves(next_node, a, b) <= count_moves(head, a, b))
+		if (count_moves(head, a, b) < count_moves(next_node, a, b) )
 			next_node = head;
 		head = head->next;
 	}
-	return (head);
+	return (next_node);
 }
