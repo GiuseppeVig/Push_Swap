@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:25:05 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 19:16:31 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 05:05:22 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,48 +22,40 @@ int	confront_moves(int max, int min, int node)
 		return (max);
 }
 
-t_stack *choose_node(t_stack *b, t_stack *a)
+t_stack *next_first_a(t_stack *node, t_stack *a)
 {
 	t_stack *head;
-	int	i;
-	int	maximum;
-	int	minimum;
+	t_stack	*tmp;
 
 	head = a;
-	i = count_moves(head, a, b);
-	maximum = count_moves(max_node(b), a, b);
-	minimum = count_moves(min_node(b), a, b);
-	if (confront_moves(maximum, minimum, i) == maximum)
-		return (max_node(b));
-	else if (confront_moves(maximum, minimum, i) == i)
-		return (head);
-	else
-		return (min_node(b));
+	tmp = max_node(a);
+	while (head->next != NULL)
+	{
+		if (node->value < head->value && head->value < tmp->value)
+			tmp = head;
+		head = head->next;
+	}
+	if (node->value > head->value && head->value > tmp->value)
+		tmp = head;
+	return (tmp);
 }
 
-t_stack	*next_node_a(t_stack *node, t_stack *a)
+t_stack	*next_last_a(t_stack *node, t_stack *a)
 {
 	t_stack *head;
 	t_stack	*tmp;
 
 	head = a;
 	tmp = min_node(a);
-/*	if (node->value < min_node(a)->value)
-		return (min_node(a));
-	if (node->value > max_node(a)->value)
-		return (max_node(a));*/
-//	else
-//	{
-		while (head->next != NULL)
-		{
-			if (node->value > head->value && head->value > tmp->value)
-				tmp = head;
-			head = head->next;
-		}
+	while (head->next != NULL)
+	{
 		if (node->value > head->value && head->value > tmp->value)
 			tmp = head;
-		return (tmp);
-//	}
+		head = head->next;
+	}
+	if (node->value > head->value && head->value > tmp->value)
+		tmp = head;
+	return (tmp);
 }
 
 t_stack *search_next_node(t_stack *a, t_stack *b)

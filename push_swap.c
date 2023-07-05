@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 19:35:21 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/05 05:09:54 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 {
     t_stack *a;
     t_stack *b;
-    
+
     a = NULL;
     if (argc == 2)
         insert_values(&a, argv);
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
     b = NULL;
     if (!ordered(a))
     {
-        initial_push(&a, &b); 
+        initial_push(&a, &b);
         order_stacks(&a, &b);
     }
     free_space(a);
