@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:17:04 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 15:18:27 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:22:54 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ int main(int argc, char** argv)
     }
     free_space(a);
     free_space(b);
+    return (0);
 }

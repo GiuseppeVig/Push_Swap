@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/19 11:22:11 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/04 18:51:32 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:31:53 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ int	is_valid_num(char *c)
 		i++;
 	}
 	return (1);
+}
+
+int	long_value(long i)
+{
+	if (i > 2147483647)
+		return (1);
+	return (0);
 }
 
 void	free_space(t_stack *head)

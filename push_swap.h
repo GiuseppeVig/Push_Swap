@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 15:59:31 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/07 15:29:18 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_stack
 }				t_stack;
 
 int		ft_stacksize(t_stack *lst);
+int		long_value(long i);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
 t_stack	*ft_stacknew(int n);
@@ -30,7 +31,6 @@ t_stack	*ft_stacklast(t_stack *lst);
 t_stack	*newstack(char **arguments, int n_args);
 void	insert_values(t_stack **new, char **values);
 int		ordered(t_stack *list);
-int		reverse_ordered(t_stack *head);
 void	swap(t_stack **head, int i);
 void	rotate(t_stack **head, int i);
 void	reverse_rotate(t_stack **head, int i);
