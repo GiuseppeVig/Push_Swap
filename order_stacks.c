@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 16:46:54 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/10 12:50:10 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:33:19 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	move_stacks(t_stack **a, t_stack **b, t_stack *node)
 				rotate_both(a, b);
 			else
 				reverse_rotate_both(a, b);
+			last = ft_stacklast(*a);
 		}
 		while (last->value != chosen->value && (*b)->value != node->value)
 		{
@@ -73,6 +74,7 @@ void	move_stacks(t_stack **a, t_stack **b, t_stack *node)
 				rotate_both(a, b);
 			else
 				reverse_rotate_both(a, b);
+			last = ft_stacklast(*a);
 		}
 		bring_node_on_top(b, node, 2);
 	}
