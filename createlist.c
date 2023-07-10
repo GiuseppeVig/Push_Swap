@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 19:31:27 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/07 15:41:24 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:42:42 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ t_stack	*newstack(char **arguments, int n_args)
 	t_stack	*newlist;
 	t_stack	*newnode;
 	int		n;
+	int		new_value;
 
 	n = 1;
 	newlist = ft_stacknew(ft_atoi(arguments[n]));
 	n ++;
 	while (n < n_args)
 	{
-		if (compare(ft_atoi(arguments[n]), newlist) || !is_valid_num(arguments[n]) || long_value((long)ft_atoi(arguments[n])))
+		new_value = ft_atoi(arguments[n]);
+		if (compare(new_value, newlist) || !is_valid_num(arguments[n]))
 		{
 			write(2, "Error\n", 6);
 			free_space(newlist);
@@ -40,7 +42,9 @@ t_stack	*newstack(char **arguments, int n_args)
 
 int	ordered(t_stack *a)
 {
-	t_stack *head = a;
+	t_stack	*head;
+
+	head = a;
 	while (head->next != NULL)
 	{
 		if (head->next->value < head->value)
@@ -50,10 +54,10 @@ int	ordered(t_stack *a)
 	return (1);
 }
 
-t_stack *max_node(t_stack *st)
+t_stack	*max_node(t_stack *st)
 {
-	t_stack *head;
-	t_stack *max;
+	t_stack	*head;
+	t_stack	*max;
 
 	head = st;
 	max = st;
@@ -66,10 +70,10 @@ t_stack *max_node(t_stack *st)
 	return (max);
 }
 
-t_stack *min_node(t_stack *st)
+t_stack	*min_node(t_stack *st)
 {
-	t_stack *head;
-	t_stack *min;
+	t_stack	*head;
+	t_stack	*min;
 
 	head = st;
 	min = st;
@@ -88,14 +92,16 @@ void	insert_values(t_stack **new, char **values)
 	t_stack	*tmp;
 	t_stack	*head;
 	char	**split;
-	
+	int		v;
+
 	split = ft_split(values[1], ' ');
 	i = 0;
 	tmp = NULL;
 	while (split[i] != NULL)
 	{
 		head = *new;
-		if (compare(ft_atoi(split[i]), head) || !is_valid_num(split[i]) || split[1] == NULL || long_value((long)ft_atoi(split[i])))
+		v = ft_atoi(split[i]);
+		if (compare(v, head) || !is_valid_num(split[i]) || split[0] == NULL)
 		{
 			write(2, "Error\n", 6);
 			free_space(*new);

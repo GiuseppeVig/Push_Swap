@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:25:48 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/07 15:29:18 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/10 14:17:24 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 # include "ft_printf/ft_printf.h"
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int	value;
-	int	index;
+	int				value;
+	int				index;
 	struct s_stack	*next;
 }				t_stack;
 
 int		ft_stacksize(t_stack *lst);
+void	rev_and_swap(t_stack **target);
 int		long_value(long i);
 void	ft_stackadd_front(t_stack **lst, t_stack *new);
 void	ft_stackadd_back(t_stack **lst, t_stack *new);
@@ -47,18 +48,18 @@ void	initial_push(t_stack **stack_a, t_stack **stack_b);
 int		compare(int n, t_stack *values);
 int		is_valid_num(char *c);
 void	order_3(t_stack **a);
-t_stack *next_sub_stack(t_stack *b, t_stack *a);
-t_stack *max_node(t_stack *st);
-t_stack *min_node(t_stack *st);
-t_stack *search_next_node(t_stack *a, t_stack *b);
-t_stack *choose_node(t_stack *b, t_stack *a);
+t_stack	*next_sub_stack(t_stack *b, t_stack *a);
+t_stack	*max_node(t_stack *st);
+t_stack	*min_node(t_stack *st);
+t_stack	*search_next_node(t_stack *a, t_stack *b);
+t_stack	*choose_node(t_stack *b, t_stack *a);
 t_stack	*next_last_a(t_stack *node, t_stack *a);
 int		confront_moves(int max, int min, int node);
 void	bring_node_on_top(t_stack **stack_b, t_stack *node, int i);
 void	move_stacks(t_stack **a, t_stack **b, t_stack *node);
 void	order_stacks(t_stack **a, t_stack **b);
 void	free_space(t_stack *head);
-void    print_list(t_stack *stack);
+void	print_list(t_stack *stack);
 void	adjust_stack_a(t_stack **a, t_stack *node);
 
 #endif

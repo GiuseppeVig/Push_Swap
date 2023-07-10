@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 18:25:05 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/07/05 15:59:07 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:55:11 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	confront_moves(int max, int min, int node)
 
 t_stack	*next_last_a(t_stack *node, t_stack *a)
 {
-	t_stack *head;
+	t_stack	*head;
 	t_stack	*tmp;
 
 	head = a;
@@ -47,16 +47,16 @@ t_stack	*next_last_a(t_stack *node, t_stack *a)
 	return (tmp);
 }
 
-t_stack *search_next_node(t_stack *a, t_stack *b)
+t_stack	*search_next_node(t_stack *a, t_stack *b)
 {
-	t_stack *head;
+	t_stack	*head;
 	t_stack	*next_node;
 
 	head = b;
 	next_node = b;
 	while (head->next != NULL)
 	{
-		if (count_moves(head, a, b) < count_moves(next_node, a, b) )
+		if (count_moves(head, a, b) < count_moves(next_node, a, b))
 			next_node = head;
 		head = head->next;
 	}

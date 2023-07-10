@@ -6,7 +6,7 @@
 /*   By: gvigilan <gvigilan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 18:32:45 by gvigilan          #+#    #+#             */
-/*   Updated: 2023/06/30 22:36:31 by gvigilan         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:45:07 by gvigilan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ void	rotate(t_stack **head, int i)
 
 void	reverse_rotate(t_stack **head, int i)
 {
-    t_stack *tail = ft_stacklast(*head);
-    t_stack *pen = *head;
+	t_stack	*tail;
+	t_stack	*pen;
 
+	pen = *head;
+	tail = ft_stacklast(*head);
 	while (pen->next->next != NULL)
 	{
 		pen = pen->next;
 	}
-    pen->next = NULL;
-    tail->next = *head;
-    *head = tail;
+	pen->next = NULL;
+	tail->next = *head;
+	*head = tail;
 	if (i == 1)
 		ft_printf("rra\n");
 	else if (i == 2)
@@ -64,7 +66,7 @@ void	reverse_rotate(t_stack **head, int i)
 
 void	push(t_stack **from, t_stack **to, int i)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	if (!from)
 		return ;
